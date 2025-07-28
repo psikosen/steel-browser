@@ -2,17 +2,14 @@ import { useSessionsContext } from "@/hooks/use-sessions-context";
 import { useRef, useEffect, useCallback } from "react";
 import "./session-viewer-controls.css";
 import { LoadingSpinner } from "@/components/icons/LoadingSpinner";
-import { Button } from "@/components/ui/button";
-import { ChatBubbleIcon } from "@radix-ui/react-icons";
 
 type SessionViewerProps = {
   id: string;
-  onToggleChat: () => void;
 };
 
 let clipboardBridgeActive = false;
 
-export function SessionViewer({ id, onToggleChat }: SessionViewerProps) {
+export function SessionViewer({ id }: SessionViewerProps) {
   const { useSession } = useSessionsContext();
   const {
     data: session,
@@ -193,13 +190,6 @@ export function SessionViewer({ id, onToggleChat }: SessionViewerProps) {
         className="w-full max-h-full aspect-[16/10] border border-[var(--gray-6)]"
         allow="clipboard-read; clipboard-write"
       />
-      <Button
-        variant="outline"
-        onClick={onToggleChat}
-        className="absolute bottom-4 right-4"
-      >
-        <ChatBubbleIcon />
-      </Button>
     </div>
   );
 }
