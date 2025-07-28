@@ -18,6 +18,9 @@ import type { BrowserLauncherOptions } from "./types/browser.js";
 import { WebSocketHandler } from "./types/websocket.js";
 import { WebSocketRegistryService } from "./services/websocket-registry.service.js";
 import { SessionService } from "./services/session.service.js";
+import { AgentService } from "./services/agent.service.js";
+import { FileService } from "./services/file.service.js";
+import { OllamaService } from "./services/ollama.service.js";
 
 // We need to redeclare any decorators from within the plugin that we want to expose
 declare module "fastify" {
@@ -26,6 +29,8 @@ declare module "fastify" {
     cdpService: CDPService;
     sessionService: SessionService;
     webSocketRegistry: WebSocketRegistryService;
+    agentService: AgentService;
+    ollamaService: OllamaService;
     registerCDPLaunchHook: (hook: (config: BrowserLauncherOptions) => Promise<void> | void) => void;
     registerCDPShutdownHook: (
       hook: (config: BrowserLauncherOptions | null) => Promise<void> | void,
@@ -59,6 +64,14 @@ const steelBrowserPlugin: FastifyPluginAsync<SteelBrowserConfig> = async (fastif
   });
   await fastify.register(customBodyParser);
   await fastify.register(browserSessionPlugin);
+
+  // Services
+  const fileService = FileService.getInstance();
+  const agentService = new AgentService(fastify.sessionService, fileService);
+  const ollamaService = new OllamaService(agentService);
+  fastify.decorate("agentService", agentService);
+  fastify.decorate("ollamaService", ollamaService);
+
 
   // Routes
   await fastify.register(actionsRoutes, { prefix: "/v1" });

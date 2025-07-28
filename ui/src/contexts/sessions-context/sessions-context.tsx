@@ -11,6 +11,9 @@ import {
   ReleaseBrowserSessionResponse,
   ReleaseBrowserSessionsError,
   SessionDetails,
+  screenshot,
+  ScreenshotError,
+  ScreenshotResponse2,
 } from "@/steel-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/lib/query-client";
@@ -78,10 +81,30 @@ export function SessionsProvider({
       },
     });
 
+  const useScreenshot = () =>
+    useMutation<
+      ScreenshotResponse2,
+      ScreenshotError,
+      { url: string }
+    >({
+      mutationFn: async ({ url }) => {
+        const { error, data } = await screenshot({
+          body: {
+            url,
+          },
+        });
+        if (error) {
+          throw error;
+        }
+        return data;
+      },
+    });
+
   const contextValue = {
     currentSession,
     useSession,
     useReleaseSessionMutation,
+    useScreenshot,
   };
 
   return (

@@ -1,17 +1,18 @@
 import { FastifyInstance, FastifyRequest } from 'fastify';
-import { OllamaService } from '../services/ollama.service';
 import { ollamaConfig } from '../config';
 
 export default async function (fastify: FastifyInstance) {
-  const ollamaService = new OllamaService();
-
   fastify.post(
     '/',
     async (
-      request: FastifyRequest<{ Body: { message: string } }>
+      request: FastifyRequest<{ Body: { message: string; imageUrl?: string } }>
     ) => {
-      const { message } = request.body;
-      const response = await ollamaService.generate(message, ollamaConfig.model);
+      const { message, imageUrl } = request.body;
+      const response = await fastify.ollamaService.generate(
+        message,
+        ollamaConfig.model,
+        imageUrl
+      );
       return { response: response.response };
     }
   );
