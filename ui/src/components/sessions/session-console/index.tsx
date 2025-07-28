@@ -16,9 +16,9 @@ export default function SessionConsole({ id }: SessionConsoleProps) {
 
   const tabs: { value: "details" | "logs" | "dev-tools" | "chat"; label: string }[] = [
     { value: "details", label: "Details" },
+    { value: "chat", label: "Chat" },
     { value: "logs", label: "Logs" },
     { value: "dev-tools", label: "Dev Tools" },
-    { value: "chat", label: "Chat" },
   ];
 
   return (
