@@ -65,6 +65,8 @@ const envSchema = z.object({
     .transform((val) => val === "true" || val === "1")
     .default("false"),
   PROXY_INTERNAL_BYPASS: z.string().optional(),
+  OLLAMA_HOST: z.string().optional().default("http://localhost:11434"),
+  OLLAMA_MODEL: z.string().optional().default("deepseek-r1"),
 });
 
 export const env = envSchema.parse(process.env);

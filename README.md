@@ -55,6 +55,7 @@ Under the hood, it manages sessions, pages, and browser processes, allowing you 
 - **Anti-Detection**: Includes stealth plugins and fingerprint management
 - **Resource Management**: Automatic cleanup and browser lifecycle management
 - **Browser Tools**: Exposes APIs to quick convert pages to markdown, readability, screenshots, or PDFs.
+- **Ollama Integration**: Easily connect to your Ollama instance to use your own local LLMs.
 
 
 For detailed API documentation and examples, check out our [API reference](https://docs.steel.dev/api-reference) or explore the Swagger UI directly at `http://0.0.0.0:3000/documentation`.

@@ -43,3 +43,8 @@ export const loggingConfig: LoggingConfig = {
   production: {},
   test: false,
 };
+
+export const ollamaConfig = {
+  host: env.OLLAMA_HOST,
+  model: env.OLLAMA_MODEL,
+};

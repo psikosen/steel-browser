@@ -73,6 +73,7 @@
     "level": "^9.0.0",
     "lodash-es": "^4.17.21",
     "mime-types": "^2.1.35",
+    "ollama": "^0.5.16",
     "pino": "^9.6.0",
     "pino-pretty": "^13.0.0",
     "proxy-chain": "^2.5.6",

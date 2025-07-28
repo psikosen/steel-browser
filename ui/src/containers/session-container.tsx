@@ -5,6 +5,7 @@ import { useSessionsContext } from "@/hooks/use-sessions-context";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { OllamaSettings } from "@/components/ollama/ollama-settings";
 
 export function SessionContainer() {
   const { id } = useParams();
@@ -42,6 +43,7 @@ export function SessionContainer() {
               <div className="flex flex-col items-center overflow-hidden justify-center w-full h-full border border-[var(--gray-6)] rounded-md overflow-hidden">
                 {session && <SessionConsole id={id!} />}
               </div>
+              <OllamaSettings />
             </div>
           )}
         </div>
