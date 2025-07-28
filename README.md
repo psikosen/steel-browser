@@ -59,6 +59,7 @@ Under the hood, it manages sessions, pages, and browser processes, allowing you 
 - **Chat with your Local Agent**: A simple chat interface to interact with your local agent and trigger agentic capabilities.
 - **Multimodal Chat**: The chat interface now supports sending screenshots to the model, allowing for visual understanding and interaction.
 - **Agentic Capabilities**: The AI model can now interact with the browser through the sessions and files APIs, allowing it to perform complex tasks.
+- **Chat Interface**: A chat button is now available in the session viewer to open the chat interface.
 
 
 For detailed API documentation and examples, check out our [API reference](https://docs.steel.dev/api-reference) or explore the Swagger UI directly at `http://0.0.0.0:3000/documentation`.
