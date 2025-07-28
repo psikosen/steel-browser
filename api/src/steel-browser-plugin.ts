@@ -10,7 +10,7 @@ import fileStoragePlugin from "./plugins/file-storage.js";
 import requestLogger from "./plugins/request-logger.js";
 import openAPIPlugin from "./plugins/schemas.js";
 import seleniumPlugin from "./plugins/selenium.js";
-import { actionsRoutes, cdpRoutes, filesRoutes, ollamaRoutes, seleniumRoutes, sessionsRoutes } from "./routes.js";
+import { actionsRoutes, cdpRoutes, filesRoutes, ollamaRoutes, seleniumRoutes, sessionsRoutes, chatRoutes } from "./routes.js";
 import { fileURLToPath } from "node:url";
 import ejs from "ejs";
 import type { CDPService } from "./services/cdp/cdp.service.js";
@@ -67,6 +67,7 @@ const steelBrowserPlugin: FastifyPluginAsync<SteelBrowserConfig> = async (fastif
   await fastify.register(seleniumRoutes);
   await fastify.register(filesRoutes, { prefix: "/v1" });
   await fastify.register(ollamaRoutes, { prefix: "/v1/ollama" });
+  await fastify.register(chatRoutes, { prefix: "/v1/chat" });
 };
 
 export default fp<SteelBrowserConfig>(steelBrowserPlugin, {

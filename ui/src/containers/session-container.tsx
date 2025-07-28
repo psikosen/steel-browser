@@ -6,6 +6,7 @@ import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { OllamaSettings } from "@/components/ollama/ollama-settings";
+import { Chat } from "@/components/chat/chat";
 
 export function SessionContainer() {
   const { id } = useParams();
@@ -44,6 +45,7 @@ export function SessionContainer() {
                 {session && <SessionConsole id={id!} />}
               </div>
               <OllamaSettings />
+              <Chat />
             </div>
           )}
         </div>
