@@ -1,4 +1,7 @@
 import {
+  ChatData,
+  ChatError,
+  ChatResponse,
   GetSessionDetailsError,
   GetSessionDetailsResponse,
   ReleaseBrowserSessionResponse,
@@ -23,6 +26,18 @@ export type SessionsContextType = {
     ScreenshotResponse2,
     ScreenshotError,
     { url: string },
+    unknown
+  >;
+  useChatMutation: () => UseMutationResult<
+    ChatResponse,
+    ChatError,
+    ChatData["body"],
+    unknown
+  >;
+  useAgenticTaskMutation: () => UseMutationResult<
+    AgenticTaskResponse,
+    AgenticTaskError,
+    { sessionId: string },
     unknown
   >;
 };

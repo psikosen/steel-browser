@@ -280,6 +280,31 @@ export type GetDevtoolsUrlResponse = unknown;
 
 export type GetDevtoolsUrlError = unknown;
 
+export type ChatData = {
+  body: {
+    message: string;
+    imageUrl?: string;
+  };
+};
+
+export type ChatResponse = {
+  response: string;
+};
+
+export type ChatError = unknown;
+
+export type AgenticTaskData = {
+  path: {
+    sessionId: string;
+  };
+};
+
+export type AgenticTaskResponse = {
+  response: string;
+};
+
+export type AgenticTaskError = unknown;
+
 export type ScrapeResponseTransformer = (data: any) => Promise<ScrapeResponse>;
 
 export type ScrapeResponseModelResponseTransformer = (

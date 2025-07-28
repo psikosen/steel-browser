@@ -14,6 +14,14 @@ import {
   screenshot,
   ScreenshotError,
   ScreenshotResponse2,
+  chat,
+  ChatData,
+  ChatError,
+  ChatResponse,
+  agenticTask,
+  AgenticTaskData,
+  AgenticTaskError,
+  AgenticTaskResponse,
 } from "@/steel-client";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { queryClient } from "@/lib/query-client";
@@ -100,11 +108,45 @@ export function SessionsProvider({
       },
     });
 
+  const useChatMutation = () =>
+    useMutation<ChatResponse, ChatError, ChatData["body"]>({
+      mutationFn: async (body) => {
+        const { error, data } = await chat({
+          body,
+        });
+        if (error) {
+          throw error;
+        }
+        return data;
+      },
+    });
+
+  const useAgenticTaskMutation = () =>
+    useMutation<
+      AgenticTaskResponse,
+      AgenticTaskError,
+      { sessionId: string }
+    >({
+      mutationFn: async ({ sessionId }) => {
+        const { error, data } = await agenticTask({
+          path: {
+            sessionId,
+          },
+        });
+        if (error) {
+          throw error;
+        }
+        return data;
+      },
+    });
+
   const contextValue = {
     currentSession,
     useSession,
     useReleaseSessionMutation,
     useScreenshot,
+    useChatMutation,
+    useAgenticTaskMutation,
   };
 
   return (
@@ -113,3 +155,16 @@ export function SessionsProvider({
     </SessionsContext.Provider>
   );
 }
+
+const useChatMutation = () =>
+  useMutation<ChatResponse, ChatError, ChatData["body"]>({
+    mutationFn: async (body) => {
+      const { error, data } = await chat({
+        body,
+      });
+      if (error) {
+        throw error;
+      }
+      return data;
+    },
+  });

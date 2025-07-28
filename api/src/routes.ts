@@ -5,3 +5,4 @@ export { default as cdpRoutes } from "./modules/cdp/cdp.routes.js";
 export { default as filesRoutes } from "./modules/files/files.routes.js";
 export { default as ollamaRoutes } from "./routes/ollama.js";
 export { default as chatRoutes } from "./routes/chat.js";
+export { default as agentRoutes } from "./routes/agent.js";

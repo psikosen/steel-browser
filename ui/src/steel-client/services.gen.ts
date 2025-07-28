@@ -229,3 +229,37 @@ export const getDevtoolsUrl = <ThrowOnError extends boolean = false>(
     url: "/v1/devtools/inspector.html",
   });
 };
+
+/**
+ * Chat with the agent
+ * Chat with the agent
+ */
+export const chat = <ThrowOnError extends boolean = false>(
+  options?: Options<ChatData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    ChatResponse,
+    ChatError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/v1/chat",
+  });
+};
+
+/**
+ * Start an agentic task
+ * Start an agentic task
+ */
+export const agenticTask = <ThrowOnError extends boolean = false>(
+  options?: Options<AgenticTaskData, ThrowOnError>
+) => {
+  return (options?.client ?? client).post<
+    AgenticTaskResponse,
+    AgenticTaskError,
+    ThrowOnError
+  >({
+    ...options,
+    url: "/v1/agent/{sessionId}",
+  });
+};
